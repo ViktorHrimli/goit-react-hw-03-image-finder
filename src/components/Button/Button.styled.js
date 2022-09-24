@@ -1,13 +1,12 @@
 import styled from 'styled-components';
-import { AiOutlineAim } from 'react-icons/ai';
-
-export const Icons = styled(AiOutlineAim)`
+import { GiBrute } from 'react-icons/gi';
+export const Icons = styled(GiBrute)`
   width: 20px;
   height: 20px;
   cursor: pointer;
   :hover,
   :focus {
-    fill: inherit;
+    fill: ${p => p.theme.colors.muted};
   }
 `;
 
@@ -35,8 +34,8 @@ export const LoadBtn = styled.button`
 
 export const BtnIcons = styled.button`
   position: absolute;
-  top: 3px;
-  right: 2px;
+  top: 4px;
+  right: 3px;
   display: inline-flex;
   align-items: center;
   justify-content: center;

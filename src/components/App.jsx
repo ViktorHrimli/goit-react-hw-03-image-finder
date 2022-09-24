@@ -28,7 +28,6 @@ export class App extends Component {
       this.setState({ showSpiner: !this.state.showSpiner });
     }
   }
-  componentWillUnmount() {}
 
   handeClick = e => {
     e.preventDefault();
@@ -87,12 +86,13 @@ export class App extends Component {
     return (
       <Box display="flex" flexDirection="column" alignItems="center" pb={5}>
         <FormSerch onSubmit={this.handleSubmit} />
-        {showSpiner && <ClipLoader color="#00BFFF" size={100} />}
-        <Gallery onOpenModal={this.handeClick} data={data}></Gallery>
+        <Gallery onOpenModal={this.handeClick} data={data} />
         {data.length > 0 && (
           <LoadMoreBtn onClick={this.handleClickLoadMoreBtn}></LoadMoreBtn>
         )}
+        {/*  */}
         {showModal && <Modal onClick={this.toggleModal}>{largePage}</Modal>}
+        {showSpiner && <ClipLoader color="#00BFFF" size={100} />}
         <ToastContainer autoClose={3000} />
       </Box>
     );
