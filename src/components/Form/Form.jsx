@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Formik } from 'formik';
 import { toast } from 'react-toastify';
 import * as yup from 'yup';
@@ -36,4 +37,8 @@ export const FormSerch = ({ onSubmit }) => {
       </Formik>
     </HeaderForm>
   );
+};
+
+FormSerch.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 };

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { GalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
 import { ImgGalleryList } from './ImageGallery.styled';
 import { Box } from 'CommonStyle/Common.styled';
@@ -20,4 +21,9 @@ export const Gallery = ({ data, onOpenModal }) => {
       </ImgGalleryList>
     </Box>
   );
+};
+
+Gallery.propTypes = {
+  data: PropTypes.array.isRequired,
+  onOpenModal: PropTypes.func.isRequired,
 };

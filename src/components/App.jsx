@@ -88,7 +88,7 @@ export class App extends Component {
         <FormSerch onSubmit={this.handleSubmit} />
         <Gallery onOpenModal={this.handeClick} data={data} />
         {data.length > 0 && (
-          <LoadMoreBtn onClick={this.handleClickLoadMoreBtn}></LoadMoreBtn>
+          <LoadMoreBtn onClick={this.handleClickLoadMoreBtn} />
         )}
         {/*  */}
         {showModal && <Modal onClick={this.toggleModal}>{largePage}</Modal>}

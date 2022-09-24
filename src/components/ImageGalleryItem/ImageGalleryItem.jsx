@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { ListItem } from './ImageGalleryItem.styled';
 
 export const GalleryItem = ({ img, name, largeImg, onOpenModal }) => {
@@ -8,4 +9,11 @@ export const GalleryItem = ({ img, name, largeImg, onOpenModal }) => {
       </a>
     </ListItem>
   );
+};
+
+GalleryItem.propTypes = {
+  img: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  largeImg: PropTypes.string.isRequired,
+  onOpenModal: PropTypes.func.isRequired,
 };
