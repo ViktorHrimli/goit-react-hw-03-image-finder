@@ -15,8 +15,10 @@ export const Serchbar = styled(Form)`
 `;
 
 export const InputForm = styled(Field)`
+  font-family: ${p => p.theme.fonts.monospace};
+  font-size: ${p => p.theme.fontSizes.m};
   width: ${p => p.theme.space[8]}px;
-  height: ${p => p.theme.space[4]}px;
+  height: ${p => p.theme.space[4] + 10}px;
   outline: none;
   border: ${p => p.theme.borders.normal};
   border-radius: ${p => p.theme.radii.md};

@@ -1,20 +1,23 @@
 import { GalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
 import { ImgGalleryList } from './ImageGallery.styled';
+import { Box } from 'CommonStyle/Common.styled';
 
-export const Gallery = ({ data: { hits = [] }, onOpenModal }) => {
+export const Gallery = ({ data, onOpenModal }) => {
   return (
-    <ImgGalleryList>
-      {hits.map(item => {
-        return (
-          <GalleryItem
-            onOpenModal={onOpenModal}
-            key={item.id}
-            img={item.webformatURL}
-            name={item.tags}
-            largeImg={item.largeImageURL}
-          />
-        );
-      })}
-    </ImgGalleryList>
+    <Box display="flex" flexDirection="column" alignItems="center">
+      <ImgGalleryList>
+        {data.map(item => {
+          return (
+            <GalleryItem
+              onOpenModal={onOpenModal}
+              key={item.id}
+              img={item.webformatURL}
+              name={item.tags}
+              largeImg={item.largeImageURL}
+            />
+          );
+        })}
+      </ImgGalleryList>
+    </Box>
   );
 };

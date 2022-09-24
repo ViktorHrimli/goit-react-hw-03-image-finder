@@ -1,16 +1,24 @@
 import { Formik } from 'formik';
+import { toast } from 'react-toastify';
 import * as yup from 'yup';
 import { Serchbar, InputForm, HeaderForm } from './Form.styled';
 import { SerchButton } from 'components/Button/Button';
 
 export const FormSerch = ({ onSubmit }) => {
-  const schema = yup.object().shape({});
+  const schema = yup.object().shape({
+    serchQuery: yup.string(),
+  });
   const initialValue = {
     serchQuery: '',
   };
 
   const handleSubmiit = ({ serchQuery }, { resetForm }) => {
-    onSubmit(serchQuery);
+    if (serchQuery.trim() === '') {
+      return toast.error('Required field', {
+        theme: 'dark',
+      });
+    }
+    onSubmit(serchQuery.trim());
     resetForm();
   };
 

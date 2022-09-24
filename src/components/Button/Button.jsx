@@ -1,10 +1,10 @@
-import { BtnIcons, Icons } from './Button.styled';
+import { BtnIcons, Icons, LoadBtn } from './Button.styled';
 
 export const LoadMoreBtn = ({ onClick }) => {
   return (
-    <button type="button" onClick={onClick}>
-      Откріть модалку\закріть
-    </button>
+    <LoadBtn type="button" onClick={onClick}>
+      Load more
+    </LoadBtn>
   );
 };
 
