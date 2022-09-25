@@ -12,6 +12,7 @@ import { LoadMoreBtn } from './Button/Button';
 
 export class App extends Component {
   state = {
+    showBtn: false,
     showModal: false,
     showSpiner: false,
     serchQuery: '',
@@ -39,7 +40,10 @@ export class App extends Component {
 
   apiDataService = (hits, totalHits) => {
     this.setState(prevState => ({ data: prevState.data.concat(hits) }));
-
+    this.setState({ showBtn: true });
+    if (this.state.page * 12 > +totalHits) {
+      this.setState({ showBtn: false });
+    }
     if (totalHits === 0) {
       return toast.error(
         'Sorry, there are no images matching your search query. Please try again.',
@@ -81,15 +85,13 @@ export class App extends Component {
   };
 
   render() {
-    const { data, largePage, showModal, showSpiner } = this.state;
+    const { data, largePage, showModal, showSpiner, showBtn } = this.state;
 
     return (
       <Box display="flex" flexDirection="column" alignItems="center" pb={5}>
         <FormSerch onSubmit={this.handleSubmit} />
         <Gallery onOpenModal={this.handeClick} data={data} />
-        {data.length > 0 && (
-          <LoadMoreBtn onClick={this.handleClickLoadMoreBtn} />
-        )}
+        {showBtn && <LoadMoreBtn onClick={this.handleClickLoadMoreBtn} />}
         {/*  */}
         {showModal && <Modal onClick={this.toggleModal}>{largePage}</Modal>}
         {showSpiner && <ClipLoader color="#00BFFF" size={100} />}
