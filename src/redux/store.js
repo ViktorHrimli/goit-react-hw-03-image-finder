@@ -1,16 +1,77 @@
-import { createStore } from 'redux';
-import { devToolsEnhancer } from '@redux-devtools/extension';
+import { createSlice, configureStore } from '@reduxjs/toolkit';
 
 const initialState = {
-  tasks: [{ id: 0, text: 'Learn HTML and CSS', completed: true }],
+  tasks: [
+    { id: 1, text: 'Learn HTML and CSS', completed: true },
+    { id: 2, text: 'Learn HTML and CSS', completed: true },
+    { id: 3, text: 'Learn HTML and CSS', completed: true },
+    { id: 4, text: 'Learn HTML and CSS', completed: true },
+    { id: 5, text: 'Learn HTML and CSS', completed: true },
+  ],
 };
 
-const rootReducer = (state = initialState, actions) => {
-  return state;
-};
+const taskSlice = createSlice({
+  name: 'todo',
+  initialState,
+  reducers: {
+    addTodo(state, actions) {
+      state.tasks.push(actions.payload);
+    },
+    deleteTodo(state, actions) {
+      state.tasks = state.tasks.filter(({ id }) => id !== actions.payload);
+    },
+  },
+});
 
-const enhance = devToolsEnhancer();
+const tasksReducer = taskSlice.reducer;
+export const { addTodo, deleteTodo } = taskSlice.actions;
 
-const preloadedState = { id: 0, text: 'Learn HTML and CSS', completed: true };
+// const taskReducer = (state = initialState, actions) => {
+//   switch (actions.type) {
+//     case 'todo/addTodo': {
+//       return {
+//         ...state,
+//         tasks: [...state.tasks, actions.payload],
+//       };
+//     }
+//     case 'todo/deleteTodo': {
+//       return {
+//         ...state,
+//         tasks: [state.tasks.filter(({ id }) => id !== actions.payload)],
+//       };
+//     }
+//     default: {
+//       return state;
+//     }
+//   }
+// };
 
-export const store = createStore(rootReducer, enhance);
+const filterSlice = createSlice({
+  name: 'filter',
+  initialState: '',
+  reducers: {
+    addFilter(state, actions) {
+      return actions.payload;
+    },
+  },
+});
+const filterReducer = filterSlice.reducer;
+export const { addFilter } = filterSlice.actions;
+
+// const filterReducer = (state = filterInitialState, actions) => {
+//   switch (actions.type) {
+//     case 'filter': {
+//       return actions.payload;
+//     }
+//     default: {
+//       return state;
+//     }
+//   }
+// };
+
+export const store = configureStore({
+  reducer: {
+    todo: tasksReducer,
+    filter: filterReducer,
+  },
+});

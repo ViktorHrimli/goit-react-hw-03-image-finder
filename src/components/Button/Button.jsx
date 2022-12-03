@@ -1,14 +1,18 @@
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import { BtnIcons, Icons, LoadBtn } from './Button.styled';
-import { useSelector } from 'react-redux';
-import { tasksSelector } from 'redux/selectors';
+import { deleteTodo } from '../../redux/store';
 
 export const LoadMoreBtn = ({ onClick }) => {
-  const value = useSelector(tasksSelector);
-  console.log(value);
-
+  const dispatch = useDispatch();
   return (
-    <LoadBtn type="button" onClick={onClick}>
+    <LoadBtn
+      type="button"
+      onClick={() => {
+        dispatch(deleteTodo(2));
+        return onClick;
+      }}
+    >
       Load more
     </LoadBtn>
   );

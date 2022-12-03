@@ -92,7 +92,6 @@ export class App extends Component {
         <FormSerch onSubmit={this.handleSubmit} />
         <Gallery onOpenModal={this.handeClick} data={data} />
         {showBtn && <LoadMoreBtn onClick={this.handleClickLoadMoreBtn} />}
-        {/*  */}
         {showModal && <Modal onClick={this.toggleModal}>{largePage}</Modal>}
         {showSpiner && <ClipLoader color="#00BFFF" size={100} />}
         <ToastContainer autoClose={3000} />

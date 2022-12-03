@@ -4,8 +4,14 @@ import { toast } from 'react-toastify';
 import * as yup from 'yup';
 import { Serchbar, InputForm, HeaderForm } from './Form.styled';
 import { SerchButton } from 'components/Button/Button';
+import { useDispatch } from 'react-redux';
+import { addTodo, addFilter } from '../../redux/store';
+
+import { nanoid } from 'nanoid';
 
 export const FormSerch = ({ onSubmit }) => {
+  const dispatch = useDispatch();
+
   const schema = yup.object().shape({
     serchQuery: yup.string(),
   });
@@ -14,11 +20,19 @@ export const FormSerch = ({ onSubmit }) => {
   };
 
   const handleSubmiit = ({ serchQuery }, { resetForm }) => {
+    const user = {
+      id: nanoid(),
+      text: nanoid() + 'name',
+      completed: false,
+    };
+    dispatch(addTodo(user));
+
     if (serchQuery.trim() === '') {
       return toast.error('Required field', {
         theme: 'dark',
       });
     }
+    dispatch(addFilter(serchQuery));
     onSubmit(serchQuery.trim());
     resetForm();
   };
